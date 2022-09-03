@@ -57,6 +57,7 @@ const displayNews = (data) =>{
       newsSection.classList.add('row');
       newsSection.classList.add('mb-4');
       newsSection.classList.add('bg-light');
+      // newsSection.classList.add('bg');
      
       newsSection.innerHTML=`
       <div class="col-lg-4">
@@ -89,7 +90,7 @@ const displayNews = (data) =>{
                   </div>
 
                   <div>
-                      <i class="fa-solid fa-arrow-right btn" data-bs-toggle="modal" data-bs-target="#phoneDetailModal"></i>
+                      <i class="fa-solid fa-arrow-right btn" data-bs-toggle="modal" data-bs-target="#newsDetailModal"></i>
                   </div>
               </div>
               
