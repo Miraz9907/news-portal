@@ -29,7 +29,7 @@ loadCategories();
 
 
 const displayNewsCategory = async(category_id,category_name) =>{
-  // toggleSpinner(true);
+  toggleSpinner(true);
   console.log(category_id);
   const url=  `https://openapi.programming-hero.com/api/news/category/${'0'+category_id}`
   const res = await fetch(url);
@@ -52,13 +52,12 @@ const displayNews = (data) =>{
   messageFieldContainer.textContent= '';
 
   data.forEach(news =>{
+    // console.log(news);
       const newsSection = document.createElement('div');
       newsSection.classList.add('row');
       newsSection.classList.add('mb-4');
       newsSection.classList.add('bg-light');
      
-      
-      console.log(news);
       newsSection.innerHTML=`
       <div class="col-lg-4">
           <img src="${news.image_url}" alt="" class="img-fluid h-100 p-3 rounded ">
@@ -100,8 +99,21 @@ const displayNews = (data) =>{
       messageFieldContainer.appendChild(newsSection);
 
   });
+  toggleSpinner(false);
 
 }
+
+const toggleSpinner = isSpinning =>{
+  const spinnersdiv = document.getElementById('spiners');
+  if(isSpinning){
+      spinnersdiv.classList.remove('d-none');
+  }
+  else{
+      spinnersdiv.classList.add('d-none');
+  }
+}
+
+displayNewsCategory('8')
 
 
 
