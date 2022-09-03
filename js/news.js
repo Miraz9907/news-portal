@@ -24,9 +24,9 @@ const displayCategories = (category) => {
 
     const categoryText = document.createElement("button");
     categoryText.setAttribute('onclick',`displayNewsCategory(${categories.category_id},'${categories.category_name}')`);
-
     categoryText.classList.add("btn");
-    categoryText.classList.add("category");
+    
+
     // console.log(categories.category_name);
     categoryText.innerHTML = `
         ${categories.category_name}
@@ -75,7 +75,6 @@ const displayNews = (data) =>{
       newsSection.classList.add('row');
       newsSection.classList.add('mb-4');
       newsSection.classList.add('bg-light');
-      // newsSection.classList.add('bg');
      
       newsSection.innerHTML=`
       <div class="col-lg-4">
@@ -108,7 +107,7 @@ const displayNews = (data) =>{
                   </div>
 
                   <div>
-                      <i class="fa-solid fa-arrow-right btn" onclick ="modal('${news._id}')" data-bs-toggle="modal" data-bs-target="#newsDetailModal"></i>
+                      <i class="fa-solid fa-arrow-right btn " onclick ="modal('${news._id}')" data-bs-toggle="modal" data-bs-target="#newsDetailModal"></i>
                   </div>
               </div>
               
