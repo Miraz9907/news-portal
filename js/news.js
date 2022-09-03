@@ -25,6 +25,11 @@ const displayCategories = (category) => {
     const categoryText = document.createElement("button");
     categoryText.setAttribute('onclick',`displayNewsCategory(${categories.category_id},'${categories.category_name}')`);
     categoryText.classList.add("btn");
+    // categoryText.classList.add("d-sm-block");
+    // categoryText.classList.add("m-auto");
+    // categoryText.classList.add("flex-sm-column");
+
+    
     
 
     // console.log(categories.category_name);
@@ -84,21 +89,21 @@ const displayNews = (data) =>{
           <h3>${news.title}</h3>
           <p>${news.details.length > 460 ? news.details.slice(0,460) +'...' : news.details }</p>
 
-              <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center justify-content-between flex-sm-row flex-column p-3">
                   <div class="d-flex align-items-center ">
                       <img src="${news.author.img}" alt="" height="30" class="rounded-circle">
                       <div >
-                          <p>${news.author.name} </p>
+                          <p>${news.author.name}\n </p>
                           <p>${news.author.published_date}</p>
                       </div>
                   </div>
 
-                  <div>
+                  <div >
                       <span><i class="fa-sharp fa-solid fa-eye"></i> ${news.total_view}M</span>
 
                   </div>
 
-                  <div>
+                  <div class="">
                       <i class="fa-solid fa-star-half-stroke"></i>
                       <i class="fa-regular fa-star"></i>
                       <i class="fa-regular fa-star"></i>
