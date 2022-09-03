@@ -1,22 +1,32 @@
 const loadCategories = async () => {
   const url = "https://openapi.programming-hero.com/api/news/categories";
+  try{
+
   const res = await fetch(url);
   const data = await res.json();
   displayCategories(data.data.news_category);
+  }
+  catch(error){
+    alert(error)
+
+  }
 };
+
+
 
 const displayCategories = (category) => {
   //  console.log(category);
   const catagoriesContainer = document.getElementById("catagories-container");
-  let count = 0;
+  
 
   category.forEach(categories => {
-    count = count + 1;
+    
 
     const categoryText = document.createElement("button");
     categoryText.setAttribute('onclick',`displayNewsCategory(${categories.category_id},'${categories.category_name}')`);
 
     categoryText.classList.add("btn");
+    categoryText.classList.add("category");
     // console.log(categories.category_name);
     categoryText.innerHTML = `
         ${categories.category_name}
@@ -28,16 +38,24 @@ const displayCategories = (category) => {
 loadCategories();
 
 
-const displayNewsCategory = async(category_id,category_name) =>{
+const displayNewsCategory = async(id,category_name) =>{
   toggleSpinner(true);
   // console.log(category_id);
-  const url=  `https://openapi.programming-hero.com/api/news/category/${'0'+category_id}`
+  const url=  `https://openapi.programming-hero.com/api/news/category/${'0'+id}`
+  try{
+
   const res = await fetch(url);
   const data = await res.json();
   displayNews(data.data);
   const messageField = document.getElementById('message-feild');
   const messageFieldValue = `${data.data.length} items found for this category ${category_name}` ;
   messageField.innerText = messageFieldValue;
+  }
+  catch(error){
+    alert(error);
+  }
+  
+  
 
   
 }
@@ -104,15 +122,7 @@ const displayNews = (data) =>{
 
 }
 
-// const modal = async () =>{
-//   const url = `https://openapi.programming-hero.com/api/news/2e78e5e0310c2e9adbb6efb1a263e745`;
-//   const res = await fetch(url);
-//   const data = await res.json();
-//   console.log(data);
 
-
-
-// }
 
 
 
@@ -129,9 +139,16 @@ const toggleSpinner = isSpinning =>{
 
 const modal = async(news_id) =>{
   const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
-  const res = await fetch(url);
+  try{
+    const res = await fetch(url);
   const data = await res.json();
   displayNewsDetails(data.data[0]);
+  }
+  
+  catch(error){
+    alert(error);
+  }
+  
 }
 const displayNewsDetails = news =>{
   console.log(news);
@@ -143,15 +160,16 @@ const displayNewsDetails = news =>{
   
   newsDetails.innerHTML = `
       
-      <p>ID: ${news._id ? news._id: 'No ID Found'}</p>
-      <p>Catagory No: ${news.category_id ? news.category_id : 'No category id Found'}</p>
-      <p>Author Name: ${news.author.name? news.author.name : 'No Name Found'}</p>
-      <p>Published Date: ${news.author.published_date? news.author.published_date : 'No published date Found'}</p>
-      <p>Rating: ${news.rating.number ? news.rating.number : 'No Rating Found'}</p>
-      <p>Badge: ${news.rating.badge ? news.rating.badge : 'No Badge Found'}</p>
+      <p>Catagory No: ${news.category_id ? news.category_id : 'Category id not Found'}</p>
+      <p>Author Name: ${news.author.name? news.author.name : 'Name not Found'}</p>
+      <p>ID: ${news._id ? news._id: 'ID not Found'}</p>
+      <p>Rating: ${news.rating.number ? news.rating.number : 'Rating does not exist'}</p>
+      <p>Badge: ${news.rating.badge ? news.rating.badge : 'Badge not Found'}</p>
       <img src="${news.thumbnail_url}" alt="" >
-      <p>Total Veiw: ${news.total_view ? news.total_view : 'No Veiw Found'}</p>
-      <p>Details Information: ${news.details ? news.details : 'No details information Found'}</p>
+      <p>Total Veiw: ${news.total_view ? news.total_view : 'Veiw not Found'}</p>
+      <p>Details Information: ${news.details ? news.details : 'details is not Found'}</p>
+      <p>Published Date: ${news.author.published_date? news.author.published_date : 'No published date Found'}</p>
+
 
   `;
 
@@ -159,4 +177,18 @@ const displayNewsDetails = news =>{
 
 
 displayNewsCategory('8')
+
+
+
+const goToBlogContent = () =>{
+  window.location.href = 'blog.html';
+  window.location.href = 'index.html';
+  
+}
+const goToNewsContent = () =>{
+  window.location.href = 'index.html';
+  window.location.href = 'blog.html';
+
+  
+}
 
