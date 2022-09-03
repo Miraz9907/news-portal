@@ -1,7 +1,6 @@
 const goToBlogContent = () =>{
     window.location.href = 'blog.html';
     window.location.href = 'index.html';
-    
 }
 
 const goToNewsContent = () =>{

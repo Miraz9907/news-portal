@@ -25,13 +25,7 @@ const displayCategories = (category) => {
     const categoryText = document.createElement("button");
     categoryText.setAttribute('onclick',`displayNewsCategory(${categories.category_id},'${categories.category_name}')`);
     categoryText.classList.add("btn");
-    // categoryText.classList.add("d-sm-block");
-    // categoryText.classList.add("m-auto");
-    // categoryText.classList.add("flex-sm-column");
-
     
-    
-
     // console.log(categories.category_name);
     categoryText.innerHTML = `
         ${categories.category_name}
@@ -60,15 +54,11 @@ const displayNewsCategory = async(id,category_name) =>{
     alert(error);
   }
   
-  
-
-  
 }
 const displayNews = (data) =>{
   
   // sort by view
   data.sort((a, b) => b.total_view- a.total_view);
-
 
   // console.log(data);
   const messageFieldContainer = document.getElementById('news-container');
@@ -125,9 +115,6 @@ const displayNews = (data) =>{
   toggleSpinner(false);
 
 }
-
-
-
 
 
 const toggleSpinner = isSpinning =>{
@@ -192,7 +179,5 @@ const goToBlogContent = () =>{
 const goToNewsContent = () =>{
   window.location.href = 'index.html';
   window.location.href = 'blog.html';
-
-  
 }
 
